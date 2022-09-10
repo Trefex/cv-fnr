@@ -44,6 +44,20 @@
 % If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}<description>}
+% Hack for removing whitespace when cventry #5 is left empty.
+\renewcommand*{\cventry}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4}}
+    \ifempty{#5}{}{\\\multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}}
+  \end{tabular*}%
+}
 
 %-------------------------------------------------------------------------------
 %	PERSONAL INFORMATION
@@ -58,7 +72,7 @@
 %\mobile{(+82) 10-9030-1843}
 %\email{posquit0.bj@gmail.com}
 %\dateofbirth{January 1st, 1970}
-%\homepage{www.posquit0.com}
+\homepage{www.trefois.com}
 \github{Trefex}
 %\linkedin{posquit0}
 % \gitlab{gitlab-id}
@@ -97,9 +111,9 @@
 %-------------------------------------------------------------------------------
 \input{resume/summary.tex}
 \input{resume/experience.tex}
-\input{resume/honors.tex}
-\input{resume/presentation.tex}
-\input{resume/writing.tex}
+%\input{resume/honors.tex}
+%\input{resume/presentation.tex}
+%\input{resume/writing.tex}
 \input{resume/committees.tex}
 \input{resume/education.tex}
 \input{resume/extracurricular.tex}
